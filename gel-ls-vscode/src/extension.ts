@@ -53,6 +53,17 @@ export async function activate(context: ExtensionContext) {
   context.subscriptions.push(commands.registerCommand("gel.gel-ls.download", downloadCommand));
   context.subscriptions.push(commands.registerCommand("gel.gel-ls.restart", restartCommand));
 
+  workspace.onDidChangeConfiguration(e => {
+    if (e.affectsConfiguration('gel') && client?.isRunning()) {
+      window.showInformationMessage(
+        'To apply new configuration, gel-ls needs to be restarted.',
+        'Restart'
+      ).then(() => {
+        restartCommand();
+      });
+    }
+  })
+
   await startClient();
 }
 
@@ -152,9 +163,12 @@ async function startClient() {
 
   await clientStopped;
 
+  const project_dir: string = workspace.getConfiguration('gel').get('project-dir');
+  const config = JSON.stringify({ project_dir });
+
   const executable: Executable = {
     command: gelLsDist.command,
-    args: gelLsDist.args,
+    args: [].concat(gelLsDist.args, [config]),
     transport: TransportKind.stdio,
   };
 
@@ -169,9 +183,6 @@ async function startClient() {
   const clientOptions: LanguageClientOptions = {
     // Register the server for plain text documents
     documentSelector: [{ scheme: "file", language: "edgeql" }],
-    synchronize: {
-      fileEvents: workspace.createFileSystemWatcher("dbschema/"),
-    },
     connectionOptions: {
       maxRestartCount: 5,
     },

@@ -98,6 +98,18 @@
         "command": "gel.gel-ls.restart",
         "title": "Restart"
       }
+    ],
+    "configuration": [
+      {
+        "title": "Gel",
+        "properties": {
+          "gel.project-dir": {
+            "type": "string",
+            "default": ".",
+            "description": "Path to the gel project directory, relative to workspace root."
+          }
+        }
+      }
     ]
   },
   "scripts": {
