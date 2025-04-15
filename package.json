@@ -2,7 +2,7 @@
   "name": "edgedb",
   "displayName": "Gel",
   "description": "IDE plugin for the Gel database",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "publisher": "gel",
   "icon": "icon.png",
   "engines": {
