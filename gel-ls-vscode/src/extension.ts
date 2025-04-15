@@ -23,6 +23,9 @@ import {
   TransportKind,
 } from "vscode-languageclient/node";
 import { Distribution, ensureInstalled, removeInstallation } from "./install";
+import { Version, parseVersion, isVersionLessOrEqual, versionToString } from "./version";
+
+const minGelLsVersion: Version = { major: 7, minor: 0, dev: 9502 };
 
 let client: LanguageClient;
 let clientLogger: LogOutputChannel;
@@ -62,7 +65,7 @@ export async function activate(context: ExtensionContext) {
         restartCommand();
       });
     }
-  })
+  });
 
   await startClient();
 }
@@ -162,6 +165,25 @@ async function startClient() {
   }
 
   await clientStopped;
+
+  // verify that gel-ls version is compatible
+  const version = parseVersion(gelLsDist.version);
+  clientLogger.trace(`version=${gelLsDist.version}, parsed=${versionToString(version)}`);
+  if (version && !isVersionLessOrEqual(minGelLsVersion, version)) {
+    clientLogger.info(
+      `gel-ls ${gelLsDist.version} is outdated, minimum version is ${versionToString(minGelLsVersion)}`
+    );
+    setStatus('outdated gel-ls', 'error');
+
+    if (gelLsDist.managed) {
+      window.showErrorMessage('gel-ls is outdated', 'Download latest').then(() => {
+        downloadCommand();
+      });
+    } else {
+      window.showErrorMessage(`gel-ls is outdated, minimum version is ${versionToString(minGelLsVersion)}`);
+    }
+    return;
+  }
 
   const project_dir: string = workspace.getConfiguration('gel').get('project-dir');
   const config = JSON.stringify({ project_dir });

@@ -8,8 +8,11 @@
             "runtimeExecutable": "${execPath}",
             "args": [
                 "--extensionDevelopmentPath=${workspaceFolder}",
-                "--disable-extensions"
+                // "--disable-extensions"
             ],
+            "env": {
+                "EDGEDB_DEBUG_AST_SPAN": "1"
+            }
         }
     ]
 }

@@ -216,7 +216,6 @@ async function install(installDir: string) {
     const done = new Promise((resolve, reject) => {
         unpack.on('close', resolve);
         unpack.on('error', reject);
-        responseBody.on('close', resolve);
     });
 
     responseBody.pipe(createGunzip()).pipe(unpack)
@@ -272,7 +271,7 @@ async function findPackage(name: string, fail: boolean): Promise<Package> {
         }
         return null;
     }
-    clientLogger.debug(`found package ${pkg.name}, ${pkg.version}}`);
+    clientLogger.debug(`found package ${pkg.name}, ${pkg.version}, ${pkg.revision}`);
 
     return pkg;
 }
