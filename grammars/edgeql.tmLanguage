@@ -11,6 +11,7 @@
     <array>
       <string>edgeql</string>
       <string>esdl</string>
+      <string>gel</string>
     </array>
     <key>uuid</key>
     <string>a560aad6-9c13-49c5-a369-5fb272c8ec1a</string>
@@ -548,24 +549,25 @@
   (?# unreserved)
   abort | abstract | access | after | alias |
   allow | annotation | applied | as | asc |
-  assignment | before | cardinality | cast | committed |
-  config | conflict | cube | current | database |
-  ddl | declare | default | deferrable | deferred |
-  delegated | deny | desc | each | empty |
-  extension | final | first | from | function |
-  future | implicit | index | infix | inheritable |
-  instance | into | isolation | last | link |
-  migration | multi | object | of | only |
-  onto | operator | optionality | order | orphan |
-  overloaded | owned | package | policy | populate |
-  postfix | prefix | property | proposed | pseudo |
-  read | reject | release | rename | required |
+  assignment | before | blobal | branch | cardinality |
+  cast | committed | config | conflict | cube |
+  current | data | database | ddl | declare |
+  default | deferrable | deferred | delegated | deny |
+  desc | each | empty | extension | final |
+  first | force | from | function | future |
+  implicit | index | infix | inheritable | instance |
+  into | isolation | last | link | migration |
+  multi | object | of | only | onto |
+  operator | optionality | order | orphan | overloaded |
+  owned | package | policy | populate | postfix |
+  prefix | property | proposed | pseudo | read |
+  reject | release | rename | repeatable | required |
   reset | restrict | rewrite | role | roles |
   rollup | savepoint | scalar | schema | sdl |
   serializable | session | source | superuser | system |
-  target | ternary | then | to | transaction |
-  trigger | type | unless | using | verbose |
-  version | view | write
+  target | template | ternary | then | to |
+  transaction | trigger | type | unless | using |
+  verbose | version | view | write
   |
   (?# reserved)
   administer | alter | analyze | and | anyarray |
@@ -1348,47 +1350,52 @@
   (?:
     (
       # functions
-      abs | adjacent | all |
-      any | array_agg | array_fill |
-      array_get | array_join | array_replace |
-      array_unpack | assert | assert_distinct |
-      assert_exists | assert_single | bit_and |
-      bit_lshift | bit_not | bit_or |
-      bit_rshift | bit_xor | bounded_above |
-      bounded_below | bytes_get_bit | ceil |
-      contains | count | date_get |
+      abs | acos | adjacent |
+      all | any | array_agg |
+      array_fill | array_get | array_insert |
+      array_join | array_replace | array_set |
+      array_unpack | asin | assert |
+      assert_distinct | assert_exists | assert_single |
+      atan | atan2 | bit_and |
+      bit_count | bit_lshift | bit_not |
+      bit_or | bit_rshift | bit_xor |
+      bounded_above | bounded_below | bytes_get_bit |
+      ceil | contains | cos |
+      cot | count | date_get |
       datetime_current | datetime_get | datetime_of_statement |
       datetime_of_transaction | datetime_truncate | duration_get |
       duration_normalize_days | duration_normalize_hours | duration_to_seconds |
       duration_truncate | enumerate | find |
-      floor | get_current_database | get_instance_name |
-      get_transaction_isolation | get_version | get_version_as_str |
-      json_array_unpack | json_get | json_object_pack |
-      json_object_unpack | json_set | json_typeof |
-      len | lg | ln |
-      log | max | mean |
-      min | multirange | multirange_unpack |
-      overlaps | random | range |
+      floor | get_current_branch | get_current_database |
+      get_instance_name | get_transaction_isolation | get_version |
+      get_version_as_str | json_array_unpack | json_get |
+      json_object_pack | json_object_unpack | json_set |
+      json_typeof | len | lg |
+      ln | log | materialized |
+      max | mean | min |
+      multirange | multirange_unpack | overlaps |
+      pi | random | range |
       range_get_lower | range_get_upper | range_is_empty |
       range_is_inclusive_lower | range_is_inclusive_upper | range_unpack |
       re_match | re_match_all | re_replace |
-      re_test | round | search |
-      sequence_next | sequence_reset | sqrt |
-      stddev | stddev_pop | str_lower |
-      str_lpad | str_ltrim | str_pad_end |
-      str_pad_start | str_repeat | str_replace |
-      str_reverse | str_rpad | str_rtrim |
-      str_split | str_title | str_trim |
-      str_trim_end | str_trim_start | str_upper |
-      strictly_above | strictly_below | sum |
+      re_test | reset_query_stats | round |
+      search | sequence_next | sequence_reset |
+      sin | sqrt | stddev |
+      stddev_pop | str_lower | str_lpad |
+      str_ltrim | str_pad_end | str_pad_start |
+      str_repeat | str_replace | str_reverse |
+      str_rpad | str_rtrim | str_split |
+      str_title | str_trim | str_trim_end |
+      str_trim_start | str_upper | strictly_above |
+      strictly_below | sum | tan |
       time_get | to_bigint | to_bytes |
       to_date_duration | to_datetime | to_decimal |
       to_duration | to_float32 | to_float64 |
       to_int16 | to_int32 | to_int64 |
       to_json | to_local_date | to_local_datetime |
       to_local_time | to_relative_duration | to_str |
-      uuid_generate_v1mc | uuid_generate_v4 | var |
-      var_pop | with_options
+      to_uuid | uuid_generate_v1mc | uuid_generate_v4 |
+      var | var_pop | with_options
     |
       # constraints
       constraint | exclusive | expression |
@@ -1453,55 +1460,60 @@
   (?:
     (
       cal | cfg | enc |
-      ext | fts | math |
-      pg | schema | std |
-      sys
+      ext | fts | http |
+      math | net | pg |
+      schema | std | sys
     )
     |
     (?# masking built-ins in odd ways)
     (
       #functions
-      abs | adjacent | all |
-      any | array_agg | array_fill |
-      array_get | array_join | array_replace |
-      array_unpack | assert | assert_distinct |
-      assert_exists | assert_single | bit_and |
-      bit_lshift | bit_not | bit_or |
-      bit_rshift | bit_xor | bounded_above |
-      bounded_below | bytes_get_bit | ceil |
-      contains | count | date_get |
+      abs | acos | adjacent |
+      all | any | array_agg |
+      array_fill | array_get | array_insert |
+      array_join | array_replace | array_set |
+      array_unpack | asin | assert |
+      assert_distinct | assert_exists | assert_single |
+      atan | atan2 | bit_and |
+      bit_count | bit_lshift | bit_not |
+      bit_or | bit_rshift | bit_xor |
+      bounded_above | bounded_below | bytes_get_bit |
+      ceil | contains | cos |
+      cot | count | date_get |
       datetime_current | datetime_get | datetime_of_statement |
       datetime_of_transaction | datetime_truncate | duration_get |
       duration_normalize_days | duration_normalize_hours | duration_to_seconds |
       duration_truncate | enumerate | find |
-      floor | get_current_database | get_instance_name |
-      get_transaction_isolation | get_version | get_version_as_str |
-      json_array_unpack | json_get | json_object_pack |
-      json_object_unpack | json_set | json_typeof |
-      len | lg | ln |
-      log | max | mean |
-      min | multirange | multirange_unpack |
-      overlaps | random | range |
+      floor | get_current_branch | get_current_database |
+      get_instance_name | get_transaction_isolation | get_version |
+      get_version_as_str | json_array_unpack | json_get |
+      json_object_pack | json_object_unpack | json_set |
+      json_typeof | len | lg |
+      ln | log | materialized |
+      max | mean | min |
+      multirange | multirange_unpack | overlaps |
+      pi | random | range |
       range_get_lower | range_get_upper | range_is_empty |
       range_is_inclusive_lower | range_is_inclusive_upper | range_unpack |
       re_match | re_match_all | re_replace |
-      re_test | round | search |
-      sequence_next | sequence_reset | sqrt |
-      stddev | stddev_pop | str_lower |
-      str_lpad | str_ltrim | str_pad_end |
-      str_pad_start | str_repeat | str_replace |
-      str_reverse | str_rpad | str_rtrim |
-      str_split | str_title | str_trim |
-      str_trim_end | str_trim_start | str_upper |
-      strictly_above | strictly_below | sum |
+      re_test | reset_query_stats | round |
+      search | sequence_next | sequence_reset |
+      sin | sqrt | stddev |
+      stddev_pop | str_lower | str_lpad |
+      str_ltrim | str_pad_end | str_pad_start |
+      str_repeat | str_replace | str_reverse |
+      str_rpad | str_rtrim | str_split |
+      str_title | str_trim | str_trim_end |
+      str_trim_start | str_upper | strictly_above |
+      strictly_below | sum | tan |
       time_get | to_bigint | to_bytes |
       to_date_duration | to_datetime | to_decimal |
       to_duration | to_float32 | to_float64 |
       to_int16 | to_int32 | to_int64 |
       to_json | to_local_date | to_local_datetime |
       to_local_time | to_relative_duration | to_str |
-      uuid_generate_v1mc | uuid_generate_v4 | var |
-      var_pop | with_options
+      to_uuid | uuid_generate_v1mc | uuid_generate_v4 |
+      var | var_pop | with_options
       |
       #constraints
       constraint | exclusive | expression |
@@ -1521,47 +1533,52 @@
   (?:
     (
       #functions
-      abs | adjacent | all |
-      any | array_agg | array_fill |
-      array_get | array_join | array_replace |
-      array_unpack | assert | assert_distinct |
-      assert_exists | assert_single | bit_and |
-      bit_lshift | bit_not | bit_or |
-      bit_rshift | bit_xor | bounded_above |
-      bounded_below | bytes_get_bit | ceil |
-      contains | count | date_get |
+      abs | acos | adjacent |
+      all | any | array_agg |
+      array_fill | array_get | array_insert |
+      array_join | array_replace | array_set |
+      array_unpack | asin | assert |
+      assert_distinct | assert_exists | assert_single |
+      atan | atan2 | bit_and |
+      bit_count | bit_lshift | bit_not |
+      bit_or | bit_rshift | bit_xor |
+      bounded_above | bounded_below | bytes_get_bit |
+      ceil | contains | cos |
+      cot | count | date_get |
       datetime_current | datetime_get | datetime_of_statement |
       datetime_of_transaction | datetime_truncate | duration_get |
       duration_normalize_days | duration_normalize_hours | duration_to_seconds |
       duration_truncate | enumerate | find |
-      floor | get_current_database | get_instance_name |
-      get_transaction_isolation | get_version | get_version_as_str |
-      json_array_unpack | json_get | json_object_pack |
-      json_object_unpack | json_set | json_typeof |
-      len | lg | ln |
-      log | max | mean |
-      min | multirange | multirange_unpack |
-      overlaps | random | range |
+      floor | get_current_branch | get_current_database |
+      get_instance_name | get_transaction_isolation | get_version |
+      get_version_as_str | json_array_unpack | json_get |
+      json_object_pack | json_object_unpack | json_set |
+      json_typeof | len | lg |
+      ln | log | materialized |
+      max | mean | min |
+      multirange | multirange_unpack | overlaps |
+      pi | random | range |
       range_get_lower | range_get_upper | range_is_empty |
       range_is_inclusive_lower | range_is_inclusive_upper | range_unpack |
       re_match | re_match_all | re_replace |
-      re_test | round | search |
-      sequence_next | sequence_reset | sqrt |
-      stddev | stddev_pop | str_lower |
-      str_lpad | str_ltrim | str_pad_end |
-      str_pad_start | str_repeat | str_replace |
-      str_reverse | str_rpad | str_rtrim |
-      str_split | str_title | str_trim |
-      str_trim_end | str_trim_start | str_upper |
-      strictly_above | strictly_below | sum |
+      re_test | reset_query_stats | round |
+      search | sequence_next | sequence_reset |
+      sin | sqrt | stddev |
+      stddev_pop | str_lower | str_lpad |
+      str_ltrim | str_pad_end | str_pad_start |
+      str_repeat | str_replace | str_reverse |
+      str_rpad | str_rtrim | str_split |
+      str_title | str_trim | str_trim_end |
+      str_trim_start | str_upper | strictly_above |
+      strictly_below | sum | tan |
       time_get | to_bigint | to_bytes |
       to_date_duration | to_datetime | to_decimal |
       to_duration | to_float32 | to_float64 |
       to_int16 | to_int32 | to_int64 |
       to_json | to_local_date | to_local_datetime |
       to_local_time | to_relative_duration | to_str |
-      uuid_generate_v1mc | uuid_generate_v4 | var |
-      var_pop | with_options
+      to_uuid | uuid_generate_v1mc | uuid_generate_v4 |
+      var | var_pop | with_options
       |
       #constraints
       constraint | exclusive | expression |
@@ -1650,8 +1667,8 @@
         <key>match</key>
         <string>(?x) \b(?&lt;!::|\.|\.&lt;|\.&gt;)(
   cal | cfg | enc | ext |
-  fts | math | pg | schema |
-  std | sys
+  fts | http | math | net |
+  pg | schema | std | sys
 )\b
 </string>
       </dict>
@@ -1661,18 +1678,20 @@
         <string>support.type.builtin.edgeql</string>
         <key>match</key>
         <string>(?x) \b(?&lt;!\.|\.&lt;|\.&gt;) (
-  Base64Alphabet | BaseObject | ElasticLanguage | FreeObject |
-  JsonEmpty | Language | LuceneLanguage | Object |
-  PGLanguage | Weight | anycontiguous | anydiscrete |
-  anyenum | anyfloat | anyint | anynumeric |
-  anypoint | anyreal | anyscalar | anytype |
-  array | bigint | bool | bytes |
-  date_duration | datetime | decimal | document |
-  duration | enum | float32 | float64 |
-  int16 | int32 | int64 | json |
+  Base64Alphabet | BaseObject | ElasticLanguage | Endian |
+  FreeObject | JsonEmpty | Language | LuceneLanguage |
+  Method | Object | PGLanguage | RequestFailureKind |
+  RequestState | Response | ScheduledRequest | Weight |
+  anycontiguous | anydiscrete | anyenum | anyfloat |
+  anyint | anynumeric | anypoint | anyreal |
+  anyscalar | anytype | array | bigint |
+  bool | bytes | date | date_duration |
+  datetime | decimal | document | duration |
+  enum | float32 | float64 | int16 |
+  int32 | int64 | interval | json |
   local_date | local_datetime | local_time | multirange |
   range | relative_duration | sequence | str |
-  tuple | uuid
+  timestamp | timestamptz | tuple | uuid
 )\b
 </string>
       </dict>
@@ -1696,47 +1715,52 @@
             <string>support.function.builtin.edgeql</string>
             <key>match</key>
             <string>(?x) \b(?&lt;!\.|\.&lt;|\.&gt;) (
-  abs | adjacent | all |
-  any | array_agg | array_fill |
-  array_get | array_join | array_replace |
-  array_unpack | assert | assert_distinct |
-  assert_exists | assert_single | bit_and |
-  bit_lshift | bit_not | bit_or |
-  bit_rshift | bit_xor | bounded_above |
-  bounded_below | bytes_get_bit | ceil |
-  contains | count | date_get |
+  abs | acos | adjacent |
+  all | any | array_agg |
+  array_fill | array_get | array_insert |
+  array_join | array_replace | array_set |
+  array_unpack | asin | assert |
+  assert_distinct | assert_exists | assert_single |
+  atan | atan2 | bit_and |
+  bit_count | bit_lshift | bit_not |
+  bit_or | bit_rshift | bit_xor |
+  bounded_above | bounded_below | bytes_get_bit |
+  ceil | contains | cos |
+  cot | count | date_get |
   datetime_current | datetime_get | datetime_of_statement |
   datetime_of_transaction | datetime_truncate | duration_get |
   duration_normalize_days | duration_normalize_hours | duration_to_seconds |
   duration_truncate | enumerate | find |
-  floor | get_current_database | get_instance_name |
-  get_transaction_isolation | get_version | get_version_as_str |
-  json_array_unpack | json_get | json_object_pack |
-  json_object_unpack | json_set | json_typeof |
-  len | lg | ln |
-  log | max | mean |
-  min | multirange | multirange_unpack |
-  overlaps | random | range |
+  floor | get_current_branch | get_current_database |
+  get_instance_name | get_transaction_isolation | get_version |
+  get_version_as_str | json_array_unpack | json_get |
+  json_object_pack | json_object_unpack | json_set |
+  json_typeof | len | lg |
+  ln | log | materialized |
+  max | mean | min |
+  multirange | multirange_unpack | overlaps |
+  pi | random | range |
   range_get_lower | range_get_upper | range_is_empty |
   range_is_inclusive_lower | range_is_inclusive_upper | range_unpack |
   re_match | re_match_all | re_replace |
-  re_test | round | search |
-  sequence_next | sequence_reset | sqrt |
-  stddev | stddev_pop | str_lower |
-  str_lpad | str_ltrim | str_pad_end |
-  str_pad_start | str_repeat | str_replace |
-  str_reverse | str_rpad | str_rtrim |
-  str_split | str_title | str_trim |
-  str_trim_end | str_trim_start | str_upper |
-  strictly_above | strictly_below | sum |
+  re_test | reset_query_stats | round |
+  search | sequence_next | sequence_reset |
+  sin | sqrt | stddev |
+  stddev_pop | str_lower | str_lpad |
+  str_ltrim | str_pad_end | str_pad_start |
+  str_repeat | str_replace | str_reverse |
+  str_rpad | str_rtrim | str_split |
+  str_title | str_trim | str_trim_end |
+  str_trim_start | str_upper | strictly_above |
+  strictly_below | sum | tan |
   time_get | to_bigint | to_bytes |
   to_date_duration | to_datetime | to_decimal |
   to_duration | to_float32 | to_float64 |
   to_int16 | to_int32 | to_int64 |
   to_json | to_local_date | to_local_datetime |
   to_local_time | to_relative_duration | to_str |
-  uuid_generate_v1mc | uuid_generate_v4 | var |
-  var_pop | with_options
+  to_uuid | uuid_generate_v1mc | uuid_generate_v4 |
+  var | var_pop | with_options
 )(?=\s*\()\b
 </string>
           </dict>
@@ -1761,9 +1785,10 @@
             <string>support.other.link.builtin.edgeql</string>
             <key>match</key>
             <string>(?x) \b(
-  __edgedbsys__ | __edgedbtpl__ | __new__ |
-  __old__ | __source__ | __specified__ |
-  __std__ | __subject__ | __type__
+  __default__ | __edgedbsys__ | __edgedbtpl__ |
+  __new__ | __old__ | __source__ |
+  __specified__ | __std__ | __subject__ |
+  __type__
 )\b
 </string>
           </dict>
