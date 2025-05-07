@@ -8,6 +8,7 @@ exclusive
 enum<'aaa', 'bbb'>
 range<int64>
 multirange<int64>
+math::acos
 
 
 
@@ -38,3 +39,6 @@ multirange    : source.edgeql, support.type.builtin.edgeql
 <             : keyword.operator.edgeql, source.edgeql
 int64         : source.edgeql, support.type.builtin.edgeql
 >             : keyword.operator.edgeql, source.edgeql
+math          : source.edgeql, support.other.module.builtin.edgeql
+::            : keyword.operator.namespace.edgeql, source.edgeql
+acos          : source.edgeql, support.function.constraint.builtin.edgeql
