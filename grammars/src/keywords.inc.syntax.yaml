@@ -14,24 +14,25 @@ match: |
     (?# unreserved)
     abort | abstract | access | after | alias |
     allow | annotation | applied | as | asc |
-    assignment | before | cardinality | cast | committed |
-    config | conflict | cube | current | database |
-    ddl | declare | default | deferrable | deferred |
-    delegated | deny | desc | each | empty |
-    extension | final | first | from | function |
-    future | implicit | index | infix | inheritable |
-    instance | into | isolation | last | link |
-    migration | multi | object | of | only |
-    onto | operator | optionality | order | orphan |
-    overloaded | owned | package | policy | populate |
-    postfix | prefix | property | proposed | pseudo |
-    read | reject | release | rename | required |
+    assignment | before | blobal | branch | cardinality |
+    cast | committed | config | conflict | cube |
+    current | data | database | ddl | declare |
+    default | deferrable | deferred | delegated | deny |
+    desc | each | empty | extension | final |
+    first | force | from | function | future |
+    implicit | index | infix | inheritable | instance |
+    into | isolation | last | link | migration |
+    multi | object | of | only | onto |
+    operator | optionality | order | orphan | overloaded |
+    owned | package | policy | populate | postfix |
+    prefix | property | proposed | pseudo | read |
+    reject | release | rename | repeatable | required |
     reset | restrict | rewrite | role | roles |
     rollup | savepoint | scalar | schema | sdl |
     serializable | session | source | superuser | system |
-    target | ternary | then | to | transaction |
-    trigger | type | unless | using | verbose |
-    version | view | write
+    target | template | ternary | then | to |
+    transaction | trigger | type | unless | using |
+    verbose | version | view | write
     |
     (?# reserved)
     administer | alter | analyze | and | anyarray |

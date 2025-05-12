@@ -13,6 +13,7 @@ bounded_above()
 bounded_below()
 range_unpack()
 multirange_unpack()
+math::acos()
 
 
 
@@ -59,5 +60,10 @@ range_unpack  : meta.function-call.edgeql, source.edgeql, support.function.built
 (             : meta.function-call.edgeql, punctuation.definition.arguments.begin.edgeql, source.edgeql
 )             : meta.function-call.edgeql, punctuation.definition.arguments.end.edgeql, source.edgeql
 multirange_unpack : meta.function-call.edgeql, source.edgeql, support.function.builtin.edgeql
+(             : meta.function-call.edgeql, punctuation.definition.arguments.begin.edgeql, source.edgeql
+)             : meta.function-call.edgeql, punctuation.definition.arguments.end.edgeql, source.edgeql
+math          : meta.function-call.edgeql, source.edgeql, support.other.module.builtin.edgeql
+::            : keyword.operator.namespace.edgeql, meta.function-call.edgeql, source.edgeql
+acos          : meta.function-call.edgeql, source.edgeql, support.function.builtin.edgeql
 (             : meta.function-call.edgeql, punctuation.definition.arguments.begin.edgeql, source.edgeql
 )             : meta.function-call.edgeql, punctuation.definition.arguments.end.edgeql, source.edgeql

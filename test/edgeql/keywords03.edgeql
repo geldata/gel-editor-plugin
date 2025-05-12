@@ -5,6 +5,7 @@ AS
 ASC
 ANNOTATION
 BEFORE
+BRANCH
 BY
 CARDINALITY
 CONSTRAINT
@@ -86,6 +87,7 @@ ROLLBACK
 SELECT
 SET
 START
+TEMPLATE
 TRIGGER
 TYPEOF
 UNION
@@ -102,6 +104,7 @@ AS            : keyword.declaration.edgeql, source.edgeql
 ASC           : keyword.declaration.edgeql, source.edgeql
 ANNOTATION    : keyword.declaration.edgeql, source.edgeql
 BEFORE        : keyword.declaration.edgeql, source.edgeql
+BRANCH        : keyword.declaration.edgeql, source.edgeql
 BY            : keyword.declaration.edgeql, source.edgeql
 CARDINALITY   : keyword.declaration.edgeql, source.edgeql
 CONSTRAINT    : keyword.declaration.edgeql, source.edgeql
@@ -183,6 +186,7 @@ ROLLBACK      : keyword.declaration.edgeql, source.edgeql
 SELECT        : keyword.declaration.edgeql, source.edgeql
 SET           : keyword.declaration.edgeql, source.edgeql
 START         : keyword.declaration.edgeql, source.edgeql
+TEMPLATE      : keyword.declaration.edgeql, source.edgeql
 TRIGGER       : keyword.declaration.edgeql, source.edgeql
 TYPEOF        : keyword.declaration.edgeql, source.edgeql
 UNION         : keyword.declaration.edgeql, source.edgeql
