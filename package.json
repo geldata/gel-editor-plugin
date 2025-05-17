@@ -85,6 +85,16 @@
         "embeddedLanguages": {
           "meta.embedded.block.edgeql": "edgeql"
         }
+      },
+      {
+        "path": "./grammars/edgeql.dart.json",
+        "scopeName": "inline.edgeql",
+        "injectTo": [
+          "source.dart"
+        ],
+        "embeddedLanguages": {
+          "meta.embedded.block.edgeql": "edgeql"
+        }
       }
     ],
     "commands": [
