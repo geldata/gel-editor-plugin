@@ -39,7 +39,7 @@ Multi-workspace projects are not yet supported.
 
 ## Syntax highlighting for embedded code blocks
 
-This extension also provides syntax highlighting within string literals of other languages such as JavaScript, Go and Dart.
+This extension also provides syntax highlighting within string literals of other languages such as JavaScript, Go and Dart*.
 To enable the highlighting, include `# edgeql` in a backtick-quoted string.
 This will make it easier to spot syntax errors and make your embedded queries more readable.
 
@@ -66,3 +66,5 @@ const query = r'''#edgeql
 ```
 
 Other languages are not yet implemented, but we are accepting pull requests at [gel-editor-plugin](https://github.com/gel/gel-editor-plugin).
+
+*turn off `Editor › Semantic Highlighting: Enabled` in VSCode to see the colors
