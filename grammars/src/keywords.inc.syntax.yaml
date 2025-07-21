@@ -24,15 +24,15 @@ match: |
     into | isolation | last | link | migration |
     multi | object | of | only | onto |
     operator | optionality | order | orphan | overloaded |
-    owned | package | policy | populate | postfix |
-    prefix | property | proposed | pseudo | read |
-    reject | release | rename | repeatable | required |
-    reset | restrict | rewrite | role | roles |
-    rollup | savepoint | scalar | schema | sdl |
-    serializable | session | source | superuser | system |
-    target | template | ternary | then | to |
-    transaction | trigger | type | unless | using |
-    verbose | version | view | write
+    owned | package | permission | policy | populate |
+    postfix | prefix | property | proposed | pseudo |
+    read | reject | release | rename | repeatable |
+    required | reset | restrict | rewrite | role |
+    roles | rollup | savepoint | scalar | schema |
+    sdl | serializable | session | source | superuser |
+    system | target | template | ternary | then |
+    to | transaction | trigger | type | unless |
+    using | verbose | version | view | write
     |
     (?# reserved)
     administer | alter | analyze | and | anyarray |
