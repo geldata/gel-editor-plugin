@@ -57,7 +57,11 @@ export function isVersionLessOrEqual(a: Version, b: Version): boolean {
     return true;
 }
 
-export function versionToString(version: Version): string {
+export function versionToString(version: Version | null): string {
+    if (version == null) {
+        return 'null'
+    }
+
     if (version.dev) {
         return `${version.major}.${version.minor}-dev.${version.dev}`;
     }

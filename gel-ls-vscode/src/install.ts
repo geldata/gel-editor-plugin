@@ -137,7 +137,7 @@ export async function spawnForVersion(executable_path: string): Promise<string |
         await promise;
     } catch (e) {
         clientLogger.trace(`status: ${e.code}`);
-        if (e.code == 'ENOENT') {
+        if (e.code == 'ENOENT' || e.code == 'EACCES') {
             return null;
         } else {
             throw e;
