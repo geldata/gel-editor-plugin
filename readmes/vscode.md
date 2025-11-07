@@ -52,8 +52,7 @@ select Example { * };
 
 ```javascript
 // JavaScript
-const query = `
-  # edgeql
+const query = `# edgeql
   SELECT ...
 `;
 ```
