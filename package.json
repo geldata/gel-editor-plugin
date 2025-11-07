@@ -60,7 +60,7 @@
           "source.cjs",
           "source.mjs"
         ],
-        "scopeName": "inline.edgeql",
+        "scopeName": "js.inline.edgeql",
         "path": "./grammars/edgeql.js.json",
         "embeddedLanguages": {
           "meta.embedded.block.edgeql": "edgeql"
@@ -70,7 +70,7 @@
         "injectTo": [
           "source.rescript"
         ],
-        "scopeName": "inline.edgeql",
+        "scopeName": "res.inline.edgeql",
         "path": "./grammars/edgeql.res.json",
         "embeddedLanguages": {
           "meta.embedded.block.edgeql": "edgeql"
@@ -78,7 +78,7 @@
       },
       {
         "path": "./grammars/edgeql.go.json",
-        "scopeName": "inline.edgeql",
+        "scopeName": "go.inline.edgeql",
         "injectTo": [
           "source.go"
         ],
@@ -88,7 +88,7 @@
       },
       {
         "path": "./grammars/edgeql.dart.json",
-        "scopeName": "inline.edgeql",
+        "scopeName": "dart.inline.edgeql",
         "injectTo": [
           "source.dart"
         ],
