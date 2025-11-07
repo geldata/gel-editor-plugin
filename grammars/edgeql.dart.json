@@ -78,6 +78,6 @@
       ]
     }
   ],
-  "scopeName": "inline.edgeql"
+  "scopeName": "dart.inline.edgeql"
 }
 

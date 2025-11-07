@@ -76,5 +76,5 @@
     }
   ],
 
-  "scopeName": "inline.edgeql"
+  "scopeName": "js.inline.edgeql"
 }

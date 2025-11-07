@@ -17,5 +17,5 @@
       "patterns": [{ "include": "source.edgeql" }]
     }
   ],
-  "scopeName": "inline.edgeql"
+  "scopeName": "go.inline.edgeql"
 }
